@@ -29,7 +29,7 @@ exports.checkemail = function(req, res){
 	var post  = req.body;
 	if(req.method == "POST"){
 		var sql="SELECT email FROM `admin_user` WHERE `email`='"+post.email+"' AND status = '1'"; 
-	  console.log(sql);                       
+	  //console.log(sql);                       
       db.query(sql, function(err, results){ 
 	  	if(results.length){
 			res.render('checkemail.ejs',{message: "false"});
@@ -56,7 +56,7 @@ exports.login = function(req, res){
 			req.session.role = results[0].role;
             req.session.user = results[0];
 			
-            console.log(results[0].id);
+            //console.log(results[0].id);
             res.redirect('/');
          }
          else{
@@ -76,7 +76,7 @@ exports.dashboard = function(req, res, next){
            
    var user =  req.session.user,
    userId = req.session.userId;
-   console.log('ddd='+userId);
+   //console.log('ddd='+userId);
    if(userId == null){
       res.redirect("/login");
       return;
@@ -167,7 +167,7 @@ exports.user = function(req, res){
 		 }else{
 		 var sql = "INSERT INTO `admin_user`(`fname`,`lname`,`email`,`password`,`role`,`createdon`,`insert_ip`,`submittedby`) VALUES ('" + post.fname + "','" + post.lname + "','" + post.email + "','" + sha1(post.password) + "','" + post.role + "','" + createdon + "','" +insert_ip+ "','"+userId+"')";
 		 }
-		 console.log(sql);
+		 //console.log(sql);
       var query = db.query(sql, function(err, result) {
 		if(post.id){
 			id = post.id;
@@ -188,7 +188,7 @@ exports.delete_user = function(req,res){
 	  var modified_ip	= req.ip;
 	var sql = "UPDATE `admin_user` SET `status` = '0',`deletedon` = '" + modifiedon + "',`delete_ip` = '" +insert_ip+ "',`deletedby` = '"+userId+"' WHERE `id` = '"+id+"'";
 	var query = db.query(sql, function(err, result) {
-		console.log(id);
+		//console.log(id);
 		res.send("valid");
 	})
 	

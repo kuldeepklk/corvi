@@ -25,7 +25,7 @@ exports.product = function(req, res){
 		}else{
 			id = result.insertId;
 		}
-		console.log(id);
+		//console.log(id);
 		if(req.files){
 			if (typeof req.files.feature_images != 'undefined'){
 				var ext_feature_images = path.extname(req.files.feature_images.name)
@@ -133,7 +133,7 @@ exports.category = function(req, res){
 		 }else{
 		 var sql = "INSERT INTO `product_category`(`parent_id`,`category`,`min_watt`,`max_watt`,`createdon`,`insert_ip`,`submittedby`) VALUES ('" + post.parent_id + "','" + post.category + "','" + post.min_watt + "','" + post.max_watt + "','" + createdon + "','" +insert_ip+ "','"+userId+"')";
 		 }
-		console.log(sql);
+		//console.log(sql);
       var query = db.query(sql, function(err, result) {
 		if(post.id){
 			id = post.id;
